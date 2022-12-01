@@ -7,8 +7,8 @@ def sumAllGroups(inputList):
     for calories in inputList:
         if calories == "":
             totalCalories.append(0)
-        else:
-            totalCalories[len(totalCalories)-1] += int(calories)
+            continue
+        totalCalories[len(totalCalories)-1] += int(calories)
     return sorted(totalCalories)
 
 # Part 1: get the elf with highest number of calories (last in list or use max())
