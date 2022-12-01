@@ -12,3 +12,8 @@ In the code, simply write the following to access the helper functions
 import Helpers.utils
 
 ```
+
+## TODO
+
+Might add some .sh scripts to automate project structure and other things...
+
