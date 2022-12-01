@@ -4,7 +4,7 @@ This is my attempt at solving Advent of Code 2022 in Python. Feel free to take a
 
 ## Helpers
 
-All classes will use some helper functions defined in [Helpers/util.py](https://github.com/Heme98/AdventOfCode2022/blob/main/Helpers/utils.py)
+All classes might make use of some helper functions defined in [Helpers/util.py](https://github.com/Heme98/AdventOfCode2022/blob/main/Helpers/utils.py)
 
 In the code, simply write the following to access the helper functions
 
@@ -12,8 +12,9 @@ In the code, simply write the following to access the helper functions
 import Helpers.utils
 
 ```
+In this case, I will mainly have functions to parse files and print certain object but it may get extended depending on the task at hand.
 
-## TODO
+## Todo
 
-Might add some .sh scripts to automate project structure and other things...
+Might add some .sh scripts to automate project structure generation and/or other things...
 
