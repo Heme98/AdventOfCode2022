@@ -2,6 +2,9 @@
 def debug(value):
     print(str(value))
 
+def debug2(string, value):
+    print(string + str(value))
+
 
 # Read file line by line and store it in a list
 def fileToList(name):
