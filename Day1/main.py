@@ -20,7 +20,7 @@ def maxCalories(inputList):
     return sumAllGroups(inputList)[-1]
 
 
-# Part 2: get top 3 elfs with highest number of calories (last 3 in list)
+# Part 2: get top 3 elves with highest number of calories (last 3 in list) and sum the value
 def top3MaxCalories(inputList, target):
     return sum(sumAllGroups(inputList)[-target:])
 
