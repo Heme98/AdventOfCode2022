@@ -10,6 +10,10 @@ def debug2(string, value):
 def fileToList(name):
     return [line.strip() for line in open(f"{name}.txt", "r")]
 
+# Read file line by line and store it in a list
+def fileToListSplit(name, strip):
+    return [line.strip().split(strip) for line in open(f"{name}.txt", "r")]
+
 # Read file line by line and store it in a set
 def fileToSet(name):
     return set(line.split() for line in open(f"{name}.txt", "r"))
