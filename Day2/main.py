@@ -1,31 +1,28 @@
 # AoC 2022 - Heme98
 import Helpers.utils
 
-class Rules:
-    WIN = 6
-    DRAW = 3
-    choices = ["X", "Y", "Z"]
+choices = ["X", "Y", "Z"]
 
 def calculateWinner(challenge, user):
-    if (Rules.choices.index(challenge)) == (Rules.choices.index(user)):
-        return Rules.DRAW
-    elif ((Rules.choices.index(challenge)) + 1) % 3 == (Rules.choices.index(user)) % 3:
-        return Rules.WIN
+    if (choices.index(challenge)) == (choices.index(user)):
+        return 3
+    elif ((choices.index(challenge)) + 1) % 3 == (choices.index(user)) % 3:
+        return 6
     return 0
 
 def PartOne(inputList):
     finalScore = 0
     for pair in inputList:
         convertLetter = chr(ord(pair[0]) + 23) # Convert A, B, C to X, Y, Z
-        finalScore += (Rules.choices.index(pair[1]) + 1) + calculateWinner(convertLetter, pair[1])
+        finalScore += (choices.index(pair[1]) + 1) + calculateWinner(convertLetter, pair[1])
     return finalScore
 
 def PartTwo(inputList):
     finalScore = 0
     for pair in inputList:
         convertLetter = chr(ord(pair[0]) + 23) # Convert A, B, C to X, Y, Z
-        choice = Rules.choices[((Rules.choices.index(convertLetter) + 1) + (Rules.choices.index(pair[1]) + 1)) % 3]
-        finalScore += (Rules.choices.index(choice) + 1) + calculateWinner(convertLetter, choice)
+        choice = choices[((choices.index(convertLetter) + 1) + (choices.index(pair[1]) + 1)) % 3]
+        finalScore += (choices.index(choice) + 1) + calculateWinner(convertLetter, choice)
     return finalScore
 
 if __name__ == '__main__':
