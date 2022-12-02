@@ -7,9 +7,9 @@ class Rules:
     choices = ["X", "Y", "Z"]
 
 def calculateWinner(challenge, user):
-    if (Rules.choices.index(challenge) + 1) == (Rules.choices.index(user) + 1):
+    if (Rules.choices.index(challenge)) == (Rules.choices.index(user)):
         return Rules.DRAW
-    elif ((Rules.choices.index(challenge) + 1) + 1) % 3 == (Rules.choices.index(user) + 1) % 3:
+    elif ((Rules.choices.index(challenge)) + 1) % 3 == (Rules.choices.index(user)) % 3:
         return Rules.WIN
     return 0
 
