@@ -10,15 +10,13 @@ def calculateWinner(challenge, user):
         return 6
     return 0
 
-def PartOne(inputList):
-    finalScore = 0
+def PartOne(inputList, finalScore):
     for pair in inputList:
         convertLetter = chr(ord(pair[0]) + 23) # Convert A, B, C to X, Y, Z
         finalScore += (choices.index(pair[1]) + 1) + calculateWinner(convertLetter, pair[1])
     return finalScore
 
-def PartTwo(inputList):
-    finalScore = 0
+def PartTwo(inputList, finalScore):
     for pair in inputList:
         convertLetter = chr(ord(pair[0]) + 23) # Convert A, B, C to X, Y, Z
         choice = choices[((choices.index(convertLetter) + 1) + (choices.index(pair[1]) + 1)) % 3]
@@ -27,5 +25,5 @@ def PartTwo(inputList):
 
 if __name__ == '__main__':
     inputList = Helpers.utils.fileToListSplit("input", " ")
-    Helpers.utils.debug2("Day 2, Part 1: ", PartOne(inputList))
-    Helpers.utils.debug2("Day 2, Part 2: ", PartTwo(inputList))
+    Helpers.utils.debug2("Day 2, Part 1: ", PartOne(inputList, 0))
+    Helpers.utils.debug2("Day 2, Part 2: ", PartTwo(inputList, 0))
