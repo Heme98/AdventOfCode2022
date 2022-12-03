@@ -11,8 +11,8 @@ def fileToList(name):
     return [line.strip() for line in open(f"{name}.txt", "r")]
 
 # Read file line by line and store it in a list
-def fileToListSplit(name, strip):
-    return [line.strip().split(strip) for line in open(f"{name}.txt", "r")]
+def fileToListSplit(name, split):
+    return [line.strip().split(split) for line in open(f"{name}.txt", "r")]
 
 # Read file line by line and store it in a set
 def fileToSet(name):
