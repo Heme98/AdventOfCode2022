@@ -8,7 +8,7 @@ def condRev(stack, single):
 def buildAndMove(stack, key, moves, singlecrate):
     ship = [[crate[i] for crate in reversed(stack) if crate[i] != "."] for i in range(len(key)) if key[i] != "."] # build from bottom up
     orders = [[int(_) for _ in move.split(".") if _.isdigit()] for move in moves]  # Parse instruction
-    for ord in orders:
+    for ord in orders: # ord[0] = # of items, ord[1]-1 = target, ord[2]-1 = destination
         ship[ord[2]-1].extend(condRev(ship[ord[1]-1][len(ship[ord[1]-1])-ord[0]:], singlecrate))  # add to new stack in correct order
         ship[ord[1]-1] = ship[ord[1]-1][:len(ship[ord[1]-1])-ord[0]] # remove from old stack
     return "".join([ship[i].pop() for i in range(len(ship))])
