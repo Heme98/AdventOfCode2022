@@ -7,8 +7,16 @@ def debug2(string, value):
     print(string + str(value))
 
 # Read file line by line and store it in a list
-def fileToList(name):
+def fileToListStrip(name):
     return [line.strip() for line in open(f"{name}.txt", "r")]
+
+# Read file line by line and store it in a list
+def fileToListNoStrip(name):
+    return list(open(f"{name}.txt", "r"))
+
+# Read file line by line and store it in a list
+def fileToListReplaceStrip(name, old, new):
+    return [line.replace(old, new).strip() for line in open(f"{name}.txt", "r")]
 
 # Read file line by line and store it in a list
 def fileToListSplit(name, split):

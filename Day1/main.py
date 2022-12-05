@@ -8,7 +8,7 @@ def sumAllGroups(inputList):
         if calories == "":
             totalCalories.append(0)
             continue
-        totalCalories[len(totalCalories)-1] += int(calories)
+        totalCalories[-1] += int(calories)
     return sorted(totalCalories)
 
 # Part 1: get the elf with highest number of calories (last in list or use max())
@@ -20,6 +20,6 @@ def top3MaxCalories(inputList, target):
     return sum(sumAllGroups(inputList)[-target:])
 
 if __name__ == '__main__':
-    inputList = Helpers.utils.fileToList("input")
+    inputList = Helpers.utils.fileToListStrip("input")
     Helpers.utils.debug2("Day 1, Part 1: ", maxCalories(inputList))
     Helpers.utils.debug2("Day 1, Part 2: ", top3MaxCalories(inputList, 3))
