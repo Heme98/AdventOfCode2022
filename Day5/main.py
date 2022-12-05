@@ -10,7 +10,7 @@ def buildAndMove(stack, key, moves, singlecrate):
     orders = [[int(_) for _ in move.split(".") if _.isdigit()] for move in moves]  # Parse instruction
     for ord in orders:
         ship[ord[2]-1].extend(condRev(ship[ord[1]-1][len(ship[ord[1]-1])-ord[0]:], singlecrate))  # add to new stack
-        ship[ord[1]-1] = ship[ord[1]-1][:len(ship[ord[1]-1])-ord[0]]
+        ship[ord[1]-1] = ship[ord[1]-1][:len(ship[ord[1]-1])-ord[0]] # remove from old stack
     return "".join([ship[i].pop() for i in range(len(ship))])
 
 def partOne(ship, index, instructions):
