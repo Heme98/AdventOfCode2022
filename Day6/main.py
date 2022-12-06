@@ -4,7 +4,7 @@ import Helpers.utils
 def detectMarker(input, target):
     for i in range(len(input)):
         if len(set(input[i:i + target])) == target:
-            return input.find("".join([input[i:i+target]])) + target
+            return i + target
 
 def partOne(input, range):
     return detectMarker(input, range)
