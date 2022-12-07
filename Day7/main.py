@@ -1,9 +1,6 @@
 # AoC 2022 - Heme98
 import Helpers.utils
 
-MEMORY = 70000000
-NEEDED = 30000000
-
 class Directory:
     def __init__(self, parent, name, storage=0):
         self.parent = parent
@@ -25,22 +22,22 @@ def build(input):
             curr.children.append(Directory(curr, data[1], size))  # add file or directory
     return root
 
-def calculateStorage(root, limit, storage):
-    total = calculateSubStorage(root, limit, storage)
+def calculateStorage(root, storage):
+    total = calculateSubStorage(root, storage)
     return total, storage
 
-def calculateSubStorage(root, limit, scores): # recursively go through each directory (when leaf reached return size)
-    val = sum(calculateSubStorage(child, limit, scores) if child.children else child.storage for child in root.children)
-    if limit and val < 100000 or not limit:
-        scores.append(val)
+def calculateSubStorage(root, scores): # recursively go through each directory (when leaf reached return size)
+    val = sum(calculateSubStorage(child, scores) if child.children else child.storage for child in root.children)
+    scores.append(val)
     return val
 
 def partOne(file):
-    return sum(calculateStorage(build(file), True, [])[1])
+    total, storage = calculateStorage(build(file), [])
+    return sum(x for x in storage if x < 100000)
 
 def partTwo(file):
-    total, storage = calculateStorage(build(file), False, [])
-    return min(x for x in storage if x + (MEMORY - total) > NEEDED)
+    total, storage = calculateStorage(build(file), [])
+    return min(x for x in storage if x + (70000000 - total) > 30000000)
 
 if __name__ == '__main__':
     file = Helpers.utils.fileToListStrip("input.txt")
