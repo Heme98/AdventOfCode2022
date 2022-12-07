@@ -20,7 +20,7 @@ def partTwo(ship, index, instructions):
     return buildAndMove(copy.deepcopy(ship), index, instructions, singlecrate=False)
 
 if __name__ == '__main__':
-    file = Helpers.utils.fileToListReplaceStrip("input", " ", ".")
+    file = Helpers.utils.fileToListReplaceStrip("input.txt", " ", ".")
     ship,key,moves = file[:file.index("")-1], file[file.index("")-1], file[file.index("")+1:]
     Helpers.utils.debug2("Day 5, Part 1: ", partOne(ship, key, moves))
     Helpers.utils.debug2("Day 5, Part 2: ", partTwo(ship, key, moves))

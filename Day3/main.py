@@ -17,6 +17,6 @@ def partTwo(inputList, finalScore, increment):
     return finalScore
 
 if __name__ == '__main__':
-    inputList = Helpers.utils.fileToListStrip("input")
+    inputList = Helpers.utils.fileToListStrip("input.txt")
     Helpers.utils.debug2("Day 3, Part 1: ", partOne(inputList, 0))
     Helpers.utils.debug2("Day 3, Part 2: ", partTwo(inputList, 0, 3))

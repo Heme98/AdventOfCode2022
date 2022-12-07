@@ -20,6 +20,6 @@ def top3MaxCalories(inputList, target):
     return sum(sumAllGroups(inputList)[-target:])
 
 if __name__ == '__main__':
-    inputList = Helpers.utils.fileToListStrip("input")
+    inputList = Helpers.utils.fileToListStrip("input.txt")
     Helpers.utils.debug2("Day 1, Part 1: ", maxCalories(inputList))
     Helpers.utils.debug2("Day 1, Part 2: ", top3MaxCalories(inputList, 3))

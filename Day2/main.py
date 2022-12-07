@@ -24,6 +24,6 @@ def PartTwo(inputList, finalScore):
     return finalScore
 
 if __name__ == '__main__':
-    inputList = Helpers.utils.fileToListSplit("input", " ")
+    inputList = Helpers.utils.fileToListSplit("input.txt", " ")
     Helpers.utils.debug2("Day 2, Part 1: ", PartOne(inputList, 0))
     Helpers.utils.debug2("Day 2, Part 2: ", PartTwo(inputList, 0))

@@ -13,6 +13,6 @@ def partTwo(input, range):
     return detectMarker(input, range)
 
 if __name__ == '__main__':
-    file = Helpers.utils.fileToString("input")
+    file = Helpers.utils.fileToString("input.txt")
     Helpers.utils.debug2("Day 6, Part 1: ", partOne(file, 4))
     Helpers.utils.debug2("Day 6, Part 2: ", partTwo(file, 14))

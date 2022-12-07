@@ -8,24 +8,24 @@ def debug2(string, value):
 
 # Read file line by line and store it in a str
 def fileToString(name):
-    return "".join([line.strip() for line in open(f"{name}.txt", "r")])
+    return "".join([line.strip() for line in open(f"{name}", "r")])
 
 # Read file line by line and store it in a list
 def fileToListStrip(name):
-    return [line.strip() for line in open(f"{name}.txt", "r")]
+    return [line.strip() for line in open(f"{name}", "r")]
 
 # Read file line by line and store it in a list
 def fileToListNoStrip(name):
-    return list(open(f"{name}.txt", "r"))
+    return list(open(f"{name}", "r"))
 
 # Read file line by line and store it in a list
 def fileToListReplaceStrip(name, old, new):
-    return [line.replace(old, new).strip() for line in open(f"{name}.txt", "r")]
+    return [line.replace(old, new).strip() for line in open(f"{name}", "r")]
 
 # Read file line by line and store it in a list
 def fileToListSplit(name, split):
-    return [line.strip().split(split) for line in open(f"{name}.txt", "r")]
+    return [line.strip().split(split) for line in open(f"{name}", "r")]
 
 # Read file line by line and store it in a set
 def fileToSet(name):
-    return {line.split() for line in open(f"{name}.txt", "r")}
+    return {line.split() for line in open(f"{name}", "r")}
