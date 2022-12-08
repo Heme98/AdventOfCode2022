@@ -1,6 +1,6 @@
 # AdventOfCode2022
 
-This is my attempt at solving Advent of Code 2022 in Python. Feel free to take a look and get inspired 
+This is my attempt at solving [Advent of Code 2022](https://adventofcode.com/) in Python. Feel free to take a look and get inspired 
 
 ## Helpers
 
