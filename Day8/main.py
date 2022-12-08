@@ -21,20 +21,19 @@ def leftandright(i, j, file, k, l, left):  # recursive check (TODO: Remove recur
     return k, l
 
 def search(file):
+    visited.extend([(0,0),(len(file)-1,0),(0, len(file[0])-1),(len(file)-1,len(file[0])-1)])
+    for col in range(len(file[0])):
+        if col not in [0, len(file[0]) - 1]:
+            visited.append((0, col))  # add top edge
+            visited.append((len(file) - 1, col))  # add bottom edge
+            upanddown(0, col, file, 0, col, False)  # Look down
+            upanddown(0, col, list(reversed(file)), 0, col, True)  # Look up
     for row in range(len(file)):
-        for col in range(len(file[0])):
-            if row in [0, len(file) - 1] and col in [0, len(file[0]) - 1]:  # adding corners
-                visited.append((row, col))
-            if row == 0:
-                visited.append((row, col))  # add top edge
-                visited.append((len(file) - 1, col))  # add bottom edge
-                upanddown(0, col, file, 0, col, False)  # Look down
-                upanddown(0, col, list(reversed(file)), 0, col, True)  # Look up
-            if col == 0 and row != 0 and row != len(file) - 1:
-                visited.append((row, col))  # add left edge
-                visited.append((row, len(file[0]) - 1))  # add right edge
-                leftandright(row, col, file, row, col, False)  # Look right
-                leftandright(row, 0, [list(reversed(new)) for new in file], row, 0, True)  # Look left
+        if row not in [0, len(file) - 1]:
+            visited.append((row, 0))  # add left edge
+            visited.append((row, len(file[0]) - 1))  # add right edge
+            leftandright(row, 0, file, row, 0, False)  # Look right
+            leftandright(row, 0, [list(reversed(new)) for new in file], row, 0, True)  # Look left
 
 def calculateScenic(file, row, col, t_row, t_col, roff, coff):
     dir = 0
