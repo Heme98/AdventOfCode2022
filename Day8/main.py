@@ -36,9 +36,9 @@ def search(file):
                 leftandright(row, col, file, row, col, False)  # Look right
                 leftandright(row, 0, [list(reversed(new)) for new in file], row, 0, True)  # Look left
 
-def calculateScenic(file, row, col, t_row, t_col, roff, coff, case):
+def calculateScenic(file, row, col, t_row, t_col, roff, coff):
     dir = 0
-    while t_row != 0 and case == "up" or t_row != len(file) - 1 and case == "down" or t_col != 0 and case == "left" or t_col != len(file[0]) - 1 and case == "right":
+    while t_row != 0 and t_row != len(file) - 1 and t_col != 0 and t_col != len(file[0]) - 1:
         dir += 1
         if file[row][col] <= file[t_row + roff][t_col + coff]:
             break
@@ -49,11 +49,10 @@ def calculateScenic(file, row, col, t_row, t_col, roff, coff, case):
 def getScenic(file):
     for item in visited:
         row, col = item[0], item[1]
-        t_row, t_col = row, col
-        up = calculateScenic(file, row, col, t_row, t_col, -1, 0, "up")
-        down = calculateScenic(file, row, col, t_row, t_col, 1, 0, "down")
-        left = calculateScenic(file, row, col, t_row, t_col, 0, -1, "left")
-        right = calculateScenic(file, row, col, t_row, t_col, 0, 1, "right")
+        up = calculateScenic(file, row, col, row, col, -1, 0)
+        down = calculateScenic(file, row, col, row, col, 1, 0)
+        left = calculateScenic(file, row, col, row, col, 0, -1)
+        right = calculateScenic(file, row, col, row, col, 0, 1)
         scenic.append(up * down * left * right)
 
 def partOne(file):
