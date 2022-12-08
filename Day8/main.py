@@ -64,5 +64,5 @@ def partTwo(file):
 
 if __name__ == '__main__':
     file = Helpers.utils.fileToListStrip("input.txt")
-    Helpers.utils.debug2("Day 7, Part 1: ", partOne(file))
-    Helpers.utils.debug2("Day 7, Part 2: ", partTwo(file))
+    Helpers.utils.debug2("Day 8, Part 1: ", partOne(file))
+    Helpers.utils.debug2("Day 8, Part 2: ", partTwo(file))

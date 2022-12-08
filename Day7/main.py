@@ -17,7 +17,7 @@ def build(input):
             curr = curr.parent
         elif data[0] == "$" and data[1] == "cd" and data[2] != "/":  # enter directory
             curr = [d for d in curr.children if d.name == data[2]][0]
-        elif data[0] == "dir" or data[0].isdigit():  # if file or directory (the add to current directory)
+        elif data[0] == "dir" or data[0].isdigit():  # if file or directory (theb add to current directory)
             size = int(data[0]) if data[0].isdigit() else 0
             curr.children.append(Directory(curr, data[1], size))  # In this case, file is just a directory with a size
     return root
