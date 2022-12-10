@@ -4,58 +4,55 @@ import Helpers.utils
 visited = []
 
 def istouchinghorizont(tail, head):
-    return True if abs(tail[0] -head[0]) == 0 else abs(tail[0] - head[0]) == 1
+    return abs(tail[0] - head[0]) in [0, 1]
 
 def istouchingvert(tail, head):
-    return True if abs(tail[1] -head[1]) == 0 else abs(tail[1] - head[1]) == 1
+    return abs(tail[1] - head[1]) in [0, 1]
 
-def step(tail, head, direction, amount):
-    for _ in range(int(amount)):
-        if direction == "R":
-            head[0] += 1
-            if (tail[1] == head[1]):
-                if(not istouchinghorizont(tail, head)):
-                    tail[0] += 1
-            elif (not istouchinghorizont(tail, head)):
-                tail[0] += 1
-                tail[1] = head[1]
-        if direction == "L":
-            head[0] -= 1
-            if (tail[1] == head[1]):
-                if(not istouchinghorizont(tail, head)):
-                    tail[0] -= 1
-            elif (not istouchinghorizont(tail, head)):
-                tail[0] -= 1
-                tail[1] = head[1]
-        if direction == "U":
-            head[1] += 1
-            if (tail[0] == head[0]):
-                if(not istouchingvert(tail, head)):
-                    tail[1] += 1
-            elif (not istouchingvert(tail, head)):
-                tail[1] += 1
-                tail[0] = head[0]
-        if direction == "D":
-            head[1] -= 1
-            if (tail[0] == head[0]):
-                if(not istouchingvert(tail, head)):
-                    tail[1] -= 1
-            elif (not istouchingvert(tail, head)):
-                tail[1] -= 1
-                tail[0] = head[0]
-        if tail not in visited:
-            visited.append([tail[0], tail[1]])
+def move(rope, direction):
+    if direction == "R":
+        rope[0] += 1
+    if direction == "L":
+        rope[0] -= 1
+    if direction == "U":
+        rope[1] += 1
+    if direction == "D":
+        rope[1] -= 1
+
+def step(ropes, direction, amount):
+    for _ in range(amount):
+        for j in range(len(ropes)):
+            if j == 0:
+                move(ropes[j], direction) # Update Head
+            elif not istouchinghorizont(ropes[j], ropes[j-1]):
+                if ropes[j][1] != ropes[j-1][1]:
+                    vertical = "U" if ropes[j][1] < ropes[j - 1][1] else "D"
+                    move(ropes[j], vertical)
+                if ropes[j][0] != ropes[j - 1][0]:
+                    horizontal = "R" if ropes[j][0] < ropes[j - 1][0] else "L"
+                    move(ropes[j], horizontal)
+            elif not istouchingvert(ropes[j], ropes[j-1]):
+                if ropes[j][1] != ropes[j - 1][1]:
+                    vertical = "U" if ropes[j][1] < ropes[j - 1][1] else "D"
+                    move(ropes[j], vertical)
+                if ropes[j][0] != ropes[j-1][0]:
+                    horizontal = "R" if ropes[j][0] < ropes[j - 1][0] else "L"
+                    move(ropes[j], horizontal)
+            if [ropes[-1][0],ropes[-1][1]] not in visited:
+                visited.append([ropes[-1][0], ropes[-1][1]])
 
 def partOne(file):
-    currentHead = [0,0]
-    currentTail = [0,0]
+    ropes = [[0, 0], [0, 0]]
     for item in file:
-        step(currentTail, currentHead, item[0], item[1])
-
+        step(ropes, item[0], int(item[1]))
     return len(visited)
 
 def partTwo(file):
-    return 0
+    ropes = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    visited.clear()
+    for item in file:
+        step(ropes, item[0], int(item[1]))
+    return len(visited)
 
 if __name__ == '__main__':
     file = Helpers.utils.fileToListSplit("input.txt", " ")
