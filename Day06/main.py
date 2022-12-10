@@ -1,16 +1,11 @@
 # AoC 2022 - Heme98
 import Helpers.utils
 
-def detectMarker(input, target):
-    for i in range(len(input)):
-        if len(set(input[i:i + target])) == target:
-            return i + target
+def partOne(input, target):
+    return [i + target for i in range(len(input)) if len(set(input[i:i + target])) == target][0]
 
-def partOne(input, range):
-    return detectMarker(input, range)
-
-def partTwo(input, range):
-    return detectMarker(input, range)
+def partTwo(input, target):
+    return [i + target for i in range(len(input)) if len(set(input[i:i + target])) == target][0]
 
 if __name__ == '__main__':
     file = Helpers.utils.fileToString("input.txt")
