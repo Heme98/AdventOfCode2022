@@ -2,8 +2,7 @@
 import Helpers.utils
 
 def noop(currentCRT, regx, clock_cycles, cycles, CRT, isCRT, signals):
-    if isCRT:
-        currentCRT += "#" if clock_cycles in [regx - 1, regx, regx + 1] else "."
+    currentCRT += "#" if clock_cycles in [regx - 1, regx, regx + 1] else " "
     clock_cycles += 1
     if clock_cycles in cycles:
         CRT.append(currentCRT)
@@ -18,13 +17,10 @@ def calculateSignal(file,cycles, isCRT=False):
     clock_cycles, regx = 0, 1
     currentCRT = ""
     for item in file:
+        currentCRT, regx, clock_cycles = noop(currentCRT, regx, clock_cycles, cycles, CRT, isCRT, signals) # first cycle always a noop
         if item[0] == "addx":
-            for i in range(2):
-                currentCRT, regx, clock_cycles = noop(currentCRT, regx, clock_cycles, cycles, CRT, isCRT, signals)
-                if i == 1:
-                    regx += int(item[1])
-        else:
-            currentCRT, regx, clock_cycles = noop(currentCRT,regx,clock_cycles, cycles, CRT, isCRT, signals)
+            currentCRT, regx, clock_cycles = noop(currentCRT, regx, clock_cycles, cycles, CRT, isCRT, signals) # noop again and increment
+            regx += int(item[1])
     return sum(signals), CRT
 
 def partOne(file):

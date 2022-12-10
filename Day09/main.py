@@ -1,8 +1,6 @@
 # AoC 2022 - Heme98
 import Helpers.utils
 
-visited = []
-
 def istouching(tail, head):
     return (abs(tail[0] - head[0]) in [0, 1]) and (abs(tail[1] - head[1]) in [0, 1])
 
@@ -12,7 +10,7 @@ def move(rope, direction):
     rope[1] += 1 if direction == "U" else 0
     rope[1] -= 1 if direction == "D" else 0
 
-def step(ropes, direction, amount):
+def step(visited, ropes, direction, amount):
     for _ in range(amount):
         for j in range(len(ropes)):
             if j == 0:
@@ -28,16 +26,15 @@ def step(ropes, direction, amount):
                 visited.append([ropes[-1][0], ropes[-1][1]])
 
 def partOne(file):
-    ropes = [[0, 0], [0, 0]]
+    visited, ropes = [], [[0, 0], [0, 0]]
     for item in file:
-        step(ropes, item[0], int(item[1]))
+        step(visited, ropes, item[0], int(item[1]))
     return len(visited)
 
 def partTwo(file):
-    ropes = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-    visited.clear()
+    visited, ropes = [], [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
     for item in file:
-        step(ropes, item[0], int(item[1]))
+        step(visited, ropes, item[0], int(item[1]))
     return len(visited)
 
 if __name__ == '__main__':
