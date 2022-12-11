@@ -1,6 +1,7 @@
 # AoC 2022 - Heme98
 import Helpers.utils
 import operator
+from math import prod
 
 ops = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
 
@@ -12,7 +13,7 @@ class Monkey:
         self.direction = []
         self.throws = 0
 
-def createMonkeys(file,commonMod = 1):
+def createMonkeys(file):
     monkeys = []
     for row in file:
         if row != "":
@@ -23,12 +24,10 @@ def createMonkeys(file,commonMod = 1):
             elif "Operation" in row:
                 monkeys[-1].operation = row.split(" ", 4)[4].split()
             elif "Test" in row:
-                test = int(row.rsplit(" ", 1)[1])
-                commonMod *= test
-                monkeys[-1].test = test
+                monkeys[-1].test = int(row.rsplit(" ", 1)[1])
             else:
                 monkeys[-1].direction.append(int(row.rsplit(" ", 1)[1]))
-    return monkeys, commonMod
+    return monkeys
 
 def getMonkeyBusiness(monkeys, rounds, commonMod, relief):
     for _ in range(rounds):
@@ -36,25 +35,26 @@ def getMonkeyBusiness(monkeys, rounds, commonMod, relief):
             for item in monkey.items:
                 monkey.throws += 1
                 test = int(monkey.operation[1]) if monkey.operation[1] != "old" else int(item)
-                res = ops[monkey.operation[0]](int(item), test) // relief
+                res = (ops[monkey.operation[0]](int(item), test) // relief) % commonMod
                 if res % monkey.test == 0:
-                    monkeys[monkey.direction[0]].items.append(res % commonMod) # add with common mod to avoid large numbers
+                    monkeys[monkey.direction[0]].items.append(res)
                 else:
-                    monkeys[monkey.direction[1]].items.append(res % commonMod) # add with common mod to avoid large numbers
+                    monkeys[monkey.direction[1]].items.append(res)
             monkey.items.clear()
     mostActive = sorted([monkey.throws for monkey in monkeys])[-2:]
     return mostActive[0] * mostActive[1]
 
 def partOne(file,rounds, relief):
-    monkeys, commonMod = createMonkeys(file)
+    monkeys = createMonkeys(file)
+    commonMod = prod(m.test for m in monkeys)
     return getMonkeyBusiness(monkeys, rounds, commonMod, relief)
 
 def partTwo(file,rounds, relief):
-    monkeys, commonMod = createMonkeys(file)
+    monkeys = createMonkeys(file)
+    commonMod = prod(m.test for m in monkeys)
     return getMonkeyBusiness(monkeys, rounds, commonMod, relief)
 
 if __name__ == '__main__':
     file = Helpers.utils.fileToListReplaceStrip("input.txt", ":", "")
-    createMonkeys(file)
     Helpers.utils.debug2("Day 11, Part 1: ", partOne(file, 20, 3))
     Helpers.utils.debug2("Day 11, Part 2: ", partTwo(file, 10000, 1))
