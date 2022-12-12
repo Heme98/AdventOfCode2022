@@ -20,13 +20,13 @@ def createMonkeys(file):
             if "Monkey" in row:
                 monkeys.append(Monkey())
             elif "Starting items" in row:
-                monkeys[-1].items = [x for x in row.replace(",", " ").split(" ") if x.isdigit()]
+                monkeys[-1].items = [x for x in row.replace(",", " ").split(" ") if x.isdigit()] # add item if digit
             elif "Operation" in row:
-                monkeys[-1].operation = row.split(" ", 4)[4].split()
+                monkeys[-1].operation = row.split(" ", 4)[4].split() # add operation in form (operand,value)
             elif "Test" in row:
-                monkeys[-1].test = int(row.rsplit(" ", 1)[1])
+                monkeys[-1].test = int(row.rsplit(" ", 1)[1]) # add test value
             else:
-                monkeys[-1].direction.append(int(row.rsplit(" ", 1)[1]))
+                monkeys[-1].direction.append(int(row.rsplit(" ", 1)[1])) # add which monkey to pass [True index, False index]
     return monkeys
 
 def getMonkeyBusiness(monkeys, rounds, commonMod, relief):
