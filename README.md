@@ -28,3 +28,5 @@ Add some .sh or .py scripts to automate project structure generation and/or othe
 
 Add benchmarking to log the time of each test run
 
+Might do some code refactoring depending on how much I like my solutions or not
+
